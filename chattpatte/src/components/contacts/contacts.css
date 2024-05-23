@@ -1,0 +1,72 @@
+.contacts_main{
+    position: relative;
+    display: flex;
+    justify-content: right;
+    padding-top: 8rem;
+    margin: 0 8rem;
+}
+.contactForm{
+    background-color: #f1f3f1;
+    padding: 5rem;
+    display: flex;
+    align-items: end;
+    justify-content: right;
+    width: 70%;
+}
+.contactFormInsideDiv{
+    width: 70%;
+    text-align: center;
+}
+.contactForm p, .contactDetails p{
+    margin-top: 1rem;
+    font-size: 1.4rem;
+}
+.formField{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 1rem;
+    margin: 3rem 0;
+}
+.formField label{
+    font-size: 1.8rem;
+}
+.formField input{
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    width: 100%;
+}
+.formField textarea{
+    font-size: 1.8rem;
+    padding: 1rem 2rem;
+    width: 100%;
+    height: 25rem;
+}
+.contactDetails{
+    background-color: #50754C;
+    color: #DFEADE;
+    position: absolute;
+    padding: 5rem 5rem;
+    left: 20rem;
+    top: 27rem;
+    height: 45rem;
+    text-align: center;
+}
+.contactDetails h1{
+    font-size: 3.5rem;
+}
+.contactDescription{
+    margin-top: 4rem;
+    display: flex;
+    gap: 3rem;
+    flex-direction: column;
+}
+.contactDescList{
+    display: flex;
+    gap: 2rem;
+    font-size: 1.8rem;
+}
+.googleMap{
+    width: 100%;
+    height: 40rem;
+}

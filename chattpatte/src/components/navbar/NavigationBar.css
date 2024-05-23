@@ -1,0 +1,30 @@
+.navbar {
+    position: fixed !important;
+    padding: 1.6rem 0 !important;
+    color: #707070 !important;
+    background-color: #DFEADE !important;
+    width: 100% !important;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
+}
+
+.navbar .logo {
+    font-size: 3rem;
+    font-weight: 700;
+    color: #707070;
+}
+.navbar-nav{
+    margin: 0 0 0 auto !important;
+}
+
+.navbar .nav-link {
+    margin-right: 2rem;
+    font-size: 2rem;
+    color: #707070;
+}
+
+.navbar .nav-link .fa-heart, 
+.navbar .nav-link .fa-shopping-cart {
+    font-size: 2rem;
+}
+

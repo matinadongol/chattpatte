@@ -1,0 +1,56 @@
+.reserveTable_main{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 15rem 0;
+}
+.reserveTable_imageTop{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50rem;
+    height: 40rem;
+}
+.reserveTable_imageTop img{
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+}
+.reserveTable_imageBottom{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 50rem;
+    height: 40rem;
+}
+.reserveTable_imageBottom img{
+    width: 100%;
+    height: 100%;
+    opacity: .8;
+}
+.reserveTable_Box{
+    background-color: rgba(204, 201, 201, 0.3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70rem;
+    padding: 3rem 5rem;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 4px 12px;
+}
+.reserveTable_Form{
+    display: flex;
+    gap: 3rem;
+    margin: 4rem 0 5rem 0;
+}
+.reserveTable_FormSection h6{
+    font-size: 2rem;
+    font-weight: 500;
+    margin-bottom: 1rem;
+}
+.reserveTable_FormSection input{
+    border-style: none;
+    padding: 1rem 2rem;
+    font-size: 1.8rem;
+    color: #707070;
+}

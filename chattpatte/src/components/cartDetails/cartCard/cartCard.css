@@ -1,0 +1,33 @@
+.cartCard_Main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 2rem;
+}
+.cartCard_Img{
+    width: 15rem;
+    height: 15rem;
+}
+.cartCard_Img img{
+    width: 100%;
+    height: 100%;
+}
+.cartCard_Description{
+    width: 40rem;
+}
+.cartCard_Description h1{
+    font-size: 3rem;
+}
+.cartCard_Description p{
+    font-size: 1.4rem;
+    font-weight: 300;
+    margin-top: 1rem;
+}
+.cartCard_Price h6{
+    font-size: 3rem;
+    font-weight: 600;
+}
+.cartCard_Button{
+    font-size: 3rem;
+}
