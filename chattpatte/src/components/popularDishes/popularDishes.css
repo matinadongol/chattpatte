@@ -17,3 +17,6 @@
 .slick-slide{
     width: 40rem !important;
 }
+.slick-prev:before, .slick-next:before{
+    color:  #50754C !important;
+}

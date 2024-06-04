@@ -4,6 +4,7 @@ import MenuCard from "./MenuCard/MenuCard.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { useSelector } from "react-redux";
 
 export default function PopularDishes(){
     const settings = {
@@ -44,14 +45,15 @@ export default function PopularDishes(){
           },
         ],
       };
+    const items = useSelector((state) => state.items);
+    //console.log(items);
     return (
         <div className="popularDishes_main">
             <h1>Popular Dishes</h1>
             <Slider {...settings}>
-                <MenuCard/>
-                <MenuCard/>
-                <MenuCard/>
-                <MenuCard/>
+            {items.map((item) => (
+                <MenuCard key={item.id} item={item}/>
+            ))}
             </Slider>
         </div>
     );

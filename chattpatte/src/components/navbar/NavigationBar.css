@@ -15,6 +15,7 @@
 }
 .navbar-nav{
     margin: 0 0 0 auto !important;
+    align-items: center;
 }
 
 .navbar .nav-link {

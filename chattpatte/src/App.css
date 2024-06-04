@@ -30,10 +30,10 @@ p{
 }
 .greenbutton{
   background-color: #50754C;
-  color: #DFEADE;
+  color: #DFEADE !important;
   border: none;
   border-radius: 1rem;
-  padding: 1.5rem;
+  padding: 1.5rem 2rem !important;
   font-size: 2rem;
   font-family: "Rubik", sans-serif;
 }

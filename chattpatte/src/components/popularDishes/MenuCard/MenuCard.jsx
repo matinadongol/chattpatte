@@ -1,20 +1,19 @@
 import React from "react";
 import './menuCard.css';
-import menuImg from "../../../image/Item/ItemImg1.png";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-export default function MenuCard(){
+export default function MenuCard({item}){
     return (
         <div className="menuCard_main">
             <div className="menuCardImage">
-                <img src={menuImg} alt="salad"/>
+                <img src={item.image} alt="salad"/>
             </div>
             <div className="menuCardDescription">
-                <h6>Caesar Salda</h6>
-                <p>salad with chicken mayo bread salad with chicken mayo bread</p>
+                <h6>{item.itemName}</h6>
+                <p>{item.description}</p>
                 <div className="menuCardBottom">
-                    <h6>$16</h6>
+                    <h6>${item.originalPrice}</h6>
                     <div className="menuCardButton">
                         <FontAwesomeIcon icon={faHeart} className="menuCardIcon"/>
                         <FontAwesomeIcon icon={faShoppingCart} className="menuCardIcon"/>
