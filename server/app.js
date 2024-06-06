@@ -1,4 +1,5 @@
 //https://www.youtube.com/watch?v=RiF_-agfvtA
+//https://www.youtube.com/watch?v=1nB9Gmg0Haw
 
 require("dotenv").config();
 const express = require("express");
@@ -10,17 +11,20 @@ const session = require("express-session");
 const passport = require("passport");
 const OAuth2Strategy = require("passport-google-oauth2").Strategy;
 const userdb = require("./model/userSchema");
+const itemsdb = require("./model/itemsSchema");
+const DefaultData = require("./defaultData")
+const router = require("./routes/router")
 
 const clientID = "1059565395072-8c5vsgrnfva4aubaduoobupan1fni87i.apps.googleusercontent.com"
 const clientSecret = "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"
 
+app.use(express.json());
+app.use(router);
 app.use(cors({
   origin: "http://localhost:3000",
   method: ["GET","POST","PUT","DELETE"],
   credentials: true
 }));
-
-app.use(express.json());
 
 //session start
 app.use(session({

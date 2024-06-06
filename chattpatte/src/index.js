@@ -4,12 +4,12 @@ import './index.css';
 import App from './App.jsx';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from "react-redux";
-import chattpatteStore from './store/index.js';
+import store from './redux/store/store.js';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Provider store={chattpatteStore}>
+    <Provider store={store}>
       <App />
     </Provider>
   </React.StrictMode>

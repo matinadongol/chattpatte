@@ -7,7 +7,7 @@ export default function MenuCard({item}){
     return (
         <div className="menuCard_main">
             <div className="menuCardImage">
-                <img src={item.image} alt="salad"/>
+                <img src={process.env.PUBLIC_URL + item.image} alt="salad"/>
             </div>
             <div className="menuCardDescription">
                 <h6>{item.itemName}</h6>

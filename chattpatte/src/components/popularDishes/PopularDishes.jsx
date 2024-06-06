@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import './popularDishes.css';
 import MenuCard from "./MenuCard/MenuCard.jsx";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {getItems} from "../../redux/actions/action.js"
 
 export default function PopularDishes(){
     const settings = {
@@ -45,15 +46,21 @@ export default function PopularDishes(){
           },
         ],
       };
-    const items = useSelector((state) => state.items);
-    //console.log(items);
+    const {items} = useSelector(state => state.getItemsData);
+    console.log("poppular dishes: ", items);
+
+    const dispatch = useDispatch()
+
+    useEffect(()=> {
+      dispatch(getItems())
+    }, [dispatch])
     return (
         <div className="popularDishes_main">
             <h1>Popular Dishes</h1>
             <Slider {...settings}>
-            {items.map((item) => (
-                <MenuCard key={item.id} item={item}/>
-            ))}
+              {items.map((item, index) => (
+                    <MenuCard key={index} item={item} />
+                ))}
             </Slider>
         </div>
     );
