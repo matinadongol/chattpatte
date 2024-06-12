@@ -1,7 +1,7 @@
 const itemsData = [
   {
     id: '001',
-    image: '../../../chattapatte/src/image/Item/ItemImg1.png',
+    image: 'ItemImg1.png',
     itemName: 'Mixed Salad',
     description: "salad with chicken mayo bread salad with chicken mayo bread",
     originalPrice: '20',
@@ -15,7 +15,7 @@ const itemsData = [
   },
   {
     id: '002',
-    image: '../../../chattapatte/src/image/Item/ItemImg1.png',
+    image: 'ItemImg1.png',
     itemName: 'Ceasar Salad',
     description: "salad with chicken mayo bread salad with chicken mayo bread",
     originalPrice: '20',
@@ -29,7 +29,7 @@ const itemsData = [
   },
   {
     id: '003',
-    image: '../../../chattapatte/src/image/Item/ItemImg1.png',
+    image: 'ItemImg1.png',
     itemName: 'Avocado Salad',
     description: "salad with chicken mayo bread salad with chicken mayo bread",
     originalPrice: '20',
@@ -43,7 +43,7 @@ const itemsData = [
   },
   {
     id: '004',
-    image: '../../../chattapatte/src/image/Item/ItemImg1.png',
+    image: 'ItemImg1.png',
     itemName: 'Chicken Salad',
     description: "salad with chicken mayo bread salad with chicken mayo bread",
     originalPrice: '20',

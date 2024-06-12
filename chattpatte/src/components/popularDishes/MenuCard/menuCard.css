@@ -53,6 +53,9 @@
     width: fit-content;
     gap: 2rem;
 }
+.menuCardLink{
+    color: #707070;
+}
 .menuCardIcon{
     font-size: 3rem;
 }

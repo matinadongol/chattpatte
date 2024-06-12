@@ -1,19 +1,19 @@
 import React from "react";
 import "./reserveTable.css";
-import backgroundImage1 from '../../image/background1.png';
-import backgroundImage2 from '../../image/background2.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 export default function ReserveTable(){
+    const imagePath1 = `${process.env.PUBLIC_URL}/image/background1.png`;
+    const imagePath2 = `${process.env.PUBLIC_URL}/image/background2.png`;
     return (
         <>
             <div className="reserveTable_main">
                 <div className="reserveTable_imageTop">
-                    <img src={backgroundImage1} alt="tomato, mint, cloves"/>
+                    <img src={imagePath1} alt="tomato, mint, cloves"/>
                 </div>
                 <div className="reserveTable_imageBottom">
-                    <img src={backgroundImage2} alt="tomato, mint, cloves"/>
+                    <img src={imagePath2} alt="tomato, mint, cloves"/>
                 </div>
                 <div className="reserveTable_Box">
                     <h1>Reserve a table</h1>

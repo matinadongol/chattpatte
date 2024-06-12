@@ -2,9 +2,9 @@ import React from "react";
 import "./about.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import aboutImg from "../../image/aboutImg.png";
 
 export default function About(){
+    const imagePath = `${process.env.PUBLIC_URL}/image/aboutImg.png`;
     return (
         <>
             <div id="about_main">
@@ -17,7 +17,7 @@ export default function About(){
                 </div>
                 <div className="about_rightSection">
                     <div className="about_img">
-                        <img src={aboutImg} alt="salad"/>
+                        <img src={imagePath} alt="salad"/>
                     </div>
                 </div>
             </div>

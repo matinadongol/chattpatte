@@ -3,8 +3,11 @@ import "./cartDetails.css";
 import CartCard from "./cartCard/CartCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
+import { useParams } from "react-router-dom";
 
 export default function CartDetails(){
+    const {id} = useParams("")
+    console.log("cartDetails: ", id)
     return (
         <div className="CartDetails_Main">
             <h1 className="cartDetails_Heading">Cart Details</h1>

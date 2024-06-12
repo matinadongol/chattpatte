@@ -47,7 +47,7 @@ export default function PopularDishes(){
         ],
       };
     const {items} = useSelector(state => state.getItemsData);
-    console.log("poppular dishes: ", items);
+    //console.log("poppular dishes: ", items);
 
     const dispatch = useDispatch()
 

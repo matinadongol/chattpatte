@@ -1,6 +1,5 @@
 import React from "react";
 import "./Home.css";
-import saladImage from '../../image/salad.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import About from '../about/about';
@@ -8,12 +7,13 @@ import PopularDishes from '../popularDishes/PopularDishes';
 import ReserveTable from '../reserveTable/ReserveTable';
 
 export default function Home(){
+    const imagePath = `${process.env.PUBLIC_URL}/image/salad.png`;
     return (
         <>
             <div className="home_main">
                 <div className="home_leftSection">
                     <div className="home_img">
-                        <img src={saladImage} alt="salad"/>
+                        <img src={imagePath} alt="salad"/>
                     </div>
                 </div>
                 <div className="home_rightSection">

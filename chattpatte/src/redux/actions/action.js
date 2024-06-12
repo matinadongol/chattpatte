@@ -7,7 +7,7 @@ export const getItems = () => async(dispatch) => {
       }
     })
     const res = await data.json()
-    console.log("action.js data",res)
+    //console.log("action.js data",res)
     dispatch({type:"SUCCESS_GET_ITEMS", payload:res})
   } catch(error){
     console.log("error in action: ", error)
