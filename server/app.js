@@ -14,11 +14,13 @@ const userdb = require("./model/userSchema");
 const itemsdb = require("./model/itemsSchema");
 const DefaultData = require("./defaultData")
 const router = require("./routes/router")
+const cookieParser = require("cookie-parser")
 
 const clientID = "1059565395072-8c5vsgrnfva4aubaduoobupan1fni87i.apps.googleusercontent.com"
 const clientSecret = "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"
 
 app.use(express.json());
+app.use(cookieParser(""))
 app.use(router);
 app.use(cors({
   origin: "http://localhost:3000",

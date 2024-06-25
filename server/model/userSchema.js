@@ -1,6 +1,8 @@
 const mongoose = require("mongoose");
 const validator = require("validator")
 const bcrypt = require("bcryptjs")
+const jwt = require("jsonwebtoken")
+const secretKey = process.env.KEY
 
 const userSchema = new mongoose.Schema({
   googleId: {
@@ -40,6 +42,14 @@ const userSchema = new mongoose.Schema({
       return !this.googleId;
     }
   },
+  tokens:[
+    {
+      token: {
+        type: String,
+        required: true
+      }
+    }
+  ]
   //image:String,
   // token:[
   //   {
@@ -59,6 +69,18 @@ userSchema.pre("save", async function(next){
   }
   next()
 })
+
+//generate token
+userSchema.methods.generateAuthToken = async function (){
+  try{
+    let token = jwt.sign({_id:this._id}, secretKey)
+    this.tokens = this.tokens.concat({token})
+    await this.save()
+    return token
+  } catch(error){
+    console.log("generating token error: ", error)
+  }
+}
 
 const userdb = new mongoose.model("users", userSchema)
 

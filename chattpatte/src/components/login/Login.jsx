@@ -8,15 +8,40 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [retypePassword, setRetypePassword] = useState("");
+  const [loginData, setLoginData] = useState({
+    email: "",
+    password: ""
+  })
+  //console.log("loginData: ", loginData)
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (password === retypePassword) {
-      console.log("Form submitted:", { email, password });
+  const addData = (e) => {
+    const {name, value} = e.target
+    setLoginData(() => {
+      return {
+        ...loginData, [name]: value
+      }
+    })
+  }
+
+  const sendData = async (e) => {
+    e.preventDefault(e);
+    const { email, password} = loginData;
+    const res = await fetch("/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ email, password})
+    })
+    const data = await res.json();
+    console.log("login data: ", data)
+    if(res.status == 400 || !data){
+      console.log("invalid details")
     } else {
-      alert("Passwords do not match");
+      console.log("valid details")
+      setLoginData({...loginData, email:"", password:""})
     }
-  };
+  }
 
   const loginWithGoogle = () => {
     window.open("http://localhost:6005/auth/google/callback", "_self");
@@ -24,24 +49,28 @@ export default function Login() {
   return (
     <>
       <div className="loginContainer">
-        <form className="loginForm" onSubmit={handleSubmit}>
+        <form className="loginForm" method="POST">
           <h2>Login</h2>
           <div className="formGroup">
             <label>Email</label>
             <input
               type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
+              value={loginData.email}
+              onChange={addData}
               required
+              name="email"
+              id="email"
             />
           </div>
           <div className="formGroup">
             <label>Password</label>
             <input
               type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={loginData.password}
+              onChange={addData}
               required
+              name="password"
+              id="password"
             />
           </div>
           <div className="rememberMeForgetPassword">
@@ -54,7 +83,7 @@ export default function Login() {
             </div>
           </div>
           <div className="signInButton">
-            <button type="submit" className="greenbutton">
+            <button type="submit" className="greenbutton" onClick={sendData}>
               Log In
             </button>
           </div>
