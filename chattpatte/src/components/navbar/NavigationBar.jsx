@@ -11,7 +11,7 @@ import axios from "axios"
 
 export default function NavigationBar() {
     const [userData, setUserData] = useState({});
-    console.log("response", userData)
+    //console.log("response", userData)
     const getUser = async()=>{
         try{
             const response = await axios.get("http://localhost:6005/login/success/", {withCredentials:true})

@@ -9,6 +9,7 @@ import Contacts from './components/contacts/Contacts';
 import CartDetails from "./components/cartDetails/CartDetails";
 import Login from "./components/login/Login";
 import Item from "./components/item/Item";
+import SignUp from "./components/signUp/SignUp";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/contacts" element={<Contacts/>} />
           <Route path="/cartDetails" element={<CartDetails/>} />
           <Route path="/login" element={<Login/>} />
+          <Route path="/signUp" element={<SignUp/>} />
           <Route path="/getItemsByID/:id" element={<Item/>} />
         </Routes>
         <Footer />

@@ -52,8 +52,7 @@ passport.use(
         user = new userdb({
           googleId:profile.id,
           displayName:profile.displayName,
-          email:profile.emails[0].value,
-          image:profile.photos[0].value
+          email:profile.emails[0].value
         });
         await user.save();
       }

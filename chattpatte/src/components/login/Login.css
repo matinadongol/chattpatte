@@ -28,18 +28,72 @@
   border: 1px solid #ccc;
   border-radius: 0.25rem;
 }
-.loginButtons{
+.rememberMeForgetPassword{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.rememberMe{
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
+}
+.textButton{
+  border: none;
+  color: #50754C;
+  background-color: transparent;
+
+}
+.signInButton{
+  display: flex;
+  align-items: center;
+  justify-content: right;
+}
+.signInButton .greenbutton{
+  width: 100% !important;
+}
+.signInWithGoogle{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem 0;
+  gap: 1rem;
 }
 .googleButton{
-  background-color: #50754C;
-  color: #DFEADE !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5em;
   border: none;
-  border-radius: 1rem;
-  padding: 1.5rem 2rem !important;
-  font-size: 2rem;
-  font-family: "Rubik", sans-serif;
+  border-radius: 4px;
+  background-color: #fff;
+  color: #DB4437;
+  font-size: 1em;
+  cursor: pointer;
+  font-weight: bold;
+}
+.googleButton:hover {
+  background-color: #efefef;
+}
+.googleButton .googleLogo {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 0.5em;
+  background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjzC2JyZDZ_RaWf0qp11K0lcvB6b6kYNMoqtZAQ9hiPZ4cTIOB') no-repeat center center;
+  background-size: contain;
+}
+.googleButton svg {
+  margin-right: 0.5em;
+}
+.createAccount{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.createAccount h6{
+  margin: 0 !important;
 }
 
