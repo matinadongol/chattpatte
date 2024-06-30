@@ -49,7 +49,7 @@ const userSchema = new mongoose.Schema({
         required: true
       }
     }
-  ]
+  ],
   //image:String,
   // token:[
   //   {
@@ -59,7 +59,7 @@ const userSchema = new mongoose.Schema({
   //     }
   //   }
   // ],
-  // carts: Array
+  carts: Array
 },{timeStamps:true});
 
 userSchema.pre("save", async function(next){
@@ -79,6 +79,17 @@ userSchema.methods.generateAuthToken = async function (){
     return token
   } catch(error){
     console.log("generating token error: ", error)
+  }
+}
+
+//add to cart data
+userSchema.methods.addCartData = async function (cart){
+  try{
+    this.carts = this.carts.concat(cart)
+    await this.save()
+    return this.carts
+  } catch(error){
+    console.log("add to cart data error: ", error)
   }
 }
 

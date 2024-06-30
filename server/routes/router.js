@@ -4,6 +4,7 @@ const itemsdb = require("../model/itemsSchema");
 const userdb = require("../model/userSchema")
 const bcrypt = require("bcryptjs");
 const { use } = require("passport");
+const authenticate = require("../middleware/authenticate")
 
 //get items data
 router.get("/getItems", async(req,res) => {
@@ -45,7 +46,7 @@ router.post("/login", async(req,res) => {
       const token = await userLogin.generateAuthToken()
       console.log("token in router: ", token)
       res.cookie("Chattpatte", token, {
-        expires: new Date(Date.now() + 900000),
+        expires: new Date(Date.now() + 10800000),
         httpOnly: true
       })
       if(!isMatch){
@@ -91,13 +92,46 @@ router.post("/signUp", async(req, res) => {
 })
 
 //add to cart
-router.post(".addToCart/:id", async(req, res) => {
+router.post("/addToCart/:id", authenticate, async(req, res) => {
   try{
     const {id} = req.params
-    const cart = itemsdb.findOne({id:id})
+    const cart = await itemsdb.findOne({id:id})
     console.log("cart value: ", cart)
+
+    const UserContact = await userdb.findOne({_id:req.userID})
+    console.log("user contact:", UserContact)
+    if(UserContact){
+      const cartData = await UserContact.addCartData(cart)
+      await UserContact.save()
+      console.log("cart data: ", cartData)
+      res.status(201).json(UserContact)
+    } else{
+      res.status(401).json({error: "Invalid user"})
+    }
   } catch(error){
     console.log("add to cart error: ", error)
+  }
+})
+
+//get cart details
+router.get("/cartDetails", authenticate, async(req, res)=> {
+  try{
+    const buyer = await userdb.findOne({_id: req.userID})
+    console.log("cartDetails: ", buyer)
+    res.status(201).json(buyer)
+  } catch(error){
+    console.log("cart details error: ", error)
+  }
+})
+
+//get valid user
+router.get("/validUser", authenticate, async(req, res)=> {
+  try{
+    const validUser = await userdb.findOne({_id: req.userID})
+    console.log("cartDetails: ", validUser)
+    res.status(201).json(validUser)
+  } catch(error){
+    console.log("cart details error: ", error)
   }
 })
 

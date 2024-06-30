@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "./cartDetails.css";
 import CartCard from "./cartCard/CartCard";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -6,17 +6,43 @@ import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import { useParams } from "react-router-dom";
 
 export default function CartDetails(){
-    const {id} = useParams("")
-    console.log("cartDetails: ", id)
+    const [cartData, setCartData] = useState([])
+    //console.log("cartData: ", cartData)
+
+    const getBuyer = async() => {
+        const res = await fetch("/cartDetails", {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        })
+        const data = await res.json()
+        if(res.status !== 201){
+            console.log("getBuyer error")
+        } else {
+            setCartData(data.carts)
+        }
+    }
+    const calculateSubTotal = () => {
+        return cartData.reduce((acc, item) => acc + parseFloat(item.currentPrice), 0).toFixed(2);
+    }
+    useEffect(()=> {
+        getBuyer()
+    }, [])
     return (
         <div className="CartDetails_Main">
             <h1 className="cartDetails_Heading">Cart Details</h1>
-            <CartCard/>
-            <CartCard/>
-            <CartCard/>
+            {cartData.map((item, index)=>{
+                return (
+                    <CartCard key={index} item={item}/>
+                )
+            })}
+            
             <h2 className="subTotal">
                 Subtotal: &nbsp;
-                <span>$100.34</span>
+                <span>${calculateSubTotal()}</span>
             </h2>
             <button className="greenbutton">
                 Checkout 

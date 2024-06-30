@@ -28,4 +28,17 @@
 .navbar .nav-link .fa-shopping-cart {
     font-size: 2rem;
 }
+.NavbarCartSection{
+    position: relative;
+}
+.cartNumber{
+    background-color: #d44242;
+    color: #fff;
+    border-radius: 50%;
+    padding: .2rem .5rem;
+    border: none;
+    position: absolute;
+    top: -1rem;
+    left: 2rem;
+}
 

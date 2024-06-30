@@ -1,13 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { Link } from "react-router-dom";
+import { LoginContext } from "../context/ContextProvider";
 
 export default function Login() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [retypePassword, setRetypePassword] = useState("");
+  const {account, setAccount} = useContext(LoginContext)
   const [loginData, setLoginData] = useState({
     email: "",
     password: ""
@@ -38,7 +37,8 @@ export default function Login() {
     if(res.status == 400 || !data){
       console.log("invalid details")
     } else {
-      console.log("valid details")
+      //console.log("valid details")
+      setAccount(data)
       setLoginData({...loginData, email:"", password:""})
     }
   }

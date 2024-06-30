@@ -1,15 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './Item.css';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight} from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import NumberInput from "../numberInput/NumberInput";
+import { LoginContext } from "../context/ContextProvider";
 
 
 export default function Item(){
   const {id} = useParams("")
   //console.log("item id: ", id)
+  const history = useNavigate("")
+  const {account, setAccount} = useContext(LoginContext)
+
   const [indData, setIndData] = useState([])
   //console.log("indData: ", indData)
 
@@ -29,6 +33,31 @@ export default function Item(){
     } else {
       //console.log("getData")
       setIndData(data)
+    }
+  }
+
+  const addToCart = async(id) => {
+    const checkres = await fetch(`/addToCart/${id}`,{
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        indData
+      }),
+      credentials: "include"
+    })
+
+    const data1 = await checkres.json()
+    //console.log(data1)
+    if(checkres.status === 401 || !data1){
+      console.log("invalid userrr")
+      alert("invalid userrr")
+    } else {
+      alert("data added to your cart")
+      history("/cartDetails")
+      setAccount(data1)
     }
   }
 
@@ -87,12 +116,8 @@ export default function Item(){
           <div className="numberInput">
             <NumberInput/>
           </div>
-          <Link 
-                to={`/cartDetails`} 
-                state={{ indData }} 
-                className="addToCartButton"
-            >
-              <button className="greenbutton">
+          <div className="addToCartButton">
+              <button className="greenbutton" onClick={()=>addToCart(indData.id)}>
                 <div className="buttonName">
                   Add To Cart
                 </div>
@@ -104,7 +129,7 @@ export default function Item(){
                   <span>{indData.originalPrice}</span>
                 </div>
               </button>
-            </Link>
+            </div>
         </div>
       </div>
     }
