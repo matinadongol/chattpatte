@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Login.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import { LoginContext } from "../context/ContextProvider";
 
 export default function Login() {
@@ -12,6 +12,7 @@ export default function Login() {
     password: ""
   })
   //console.log("loginData: ", loginData)
+  const history = useNavigate()
 
   const addData = (e) => {
     const {name, value} = e.target
@@ -39,6 +40,7 @@ export default function Login() {
     } else {
       //console.log("valid details")
       setAccount(data)
+      history("/")
       setLoginData({...loginData, email:"", password:""})
     }
   }

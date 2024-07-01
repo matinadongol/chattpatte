@@ -50,15 +50,6 @@ const userSchema = new mongoose.Schema({
       }
     }
   ],
-  //image:String,
-  // token:[
-  //   {
-  //     token: {
-  //       type: String,
-  //       //required: true
-  //     }
-  //   }
-  // ],
   carts: Array
 },{timeStamps:true});
 

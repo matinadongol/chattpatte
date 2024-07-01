@@ -75,19 +75,41 @@ router.post("/signUp", async(req, res) => {
     const preUser = await userdb.findOne({email: email})
     if(preUser){
       res.status(422).json({error: "User already exist"})
+      return
     } 
     if (password !== retypePassword){
       res.status(422).json({error: "password and retype password doesnot match"})
+      return
     } 
     const finalUser = new userdb({
       displayName, email, password, retypePassword
     })
     const storedData = await finalUser.save()
-    //console.log(storedData)
+    console.log(storedData)
     res.status(201).json(storedData)
     
   } catch(error){
-    res.status(500).json({ error: "Something went wrong, please try again later" });
+    console.error("Error during signup:", error);
+    if (error.code === 11000) { // MongoDB duplicate key error
+      res.status(422).json({ error: "Email already in use" });
+    } else {
+      res.status(500).json({ error: "Something went wrong, please try again later" });
+    }
+  }
+})
+
+//user logout
+router.get("/logout", authenticate, async(req, res) => {
+  try{
+    req.rootUser.tokens = req.rootUser.tokens.filter((currentElement) => {
+      return currentElement.token !== req.tokens
+    })
+    res.clearCookie("Chattpatte", {path: "/"})
+    req.rootUser.save()
+    res.status(201).json(req.rootUser.tokens)
+    console.log("user logout successful")
+  } catch(error){
+    console.log("error while trying to logout")
   }
 })
 

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {toast} from "react-toastify";
 import "react-toastify/ReactToastify.css"
 
@@ -13,6 +13,7 @@ export default function SignUp() {
   });
   //console.log("data: ", userData);
   const [message, setMessage] = useState(null)
+  const history = useNavigate()
   const addData = (e) => {
     const { name, value } = e.target;
     setUserData(() => {
@@ -40,8 +41,9 @@ export default function SignUp() {
 
       if (res.status === 201) {
         setMessage({ type: "success", text: "User signed up successfully" });
-        console.log("User signed up successfully:", data);
-        setUserData({...userData, googleId: "1234567890", displayName: "", email: "", password: "",
+        console.log("User signed up successfully:", data)
+        history("/login")
+        setUserData({...userData, displayName: "", email: "", password: "",
         retypePassword: ""})
         toast.success("sign up successful", {
           position: "top-center"

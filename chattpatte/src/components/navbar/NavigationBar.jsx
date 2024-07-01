@@ -6,7 +6,7 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { LoginContext } from "../context/ContextProvider";
 
@@ -15,6 +15,8 @@ export default function NavigationBar() {
     const {account, setAccount} = useContext(LoginContext)
     // console.log("userData response", userData)
     // console.log("navbar account: ", account)
+
+    const history = useNavigate()
     
     const getUser = async()=>{
         try{
@@ -44,6 +46,26 @@ export default function NavigationBar() {
         }
     }
 
+    const logoutUser = async() => {
+        const res2 = await fetch("/logout", {
+            method: "GET",
+            headers: {
+                Accept: "application/json",
+                "Content-Type": "application/json"
+            },
+            credentials: "include"
+        })
+        const data2 = await res2.json()
+        if(res2.status !== 201){
+            console.log("logoutUser error")
+        } else {
+            console.log("logoutUser success", data2)
+            alert("logout")
+            setAccount(false)
+            history("/")
+        }
+    }
+
     useEffect(()=>{
         getUser()
         getValidUser()
@@ -63,14 +85,13 @@ export default function NavigationBar() {
                         <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link>
                         <Nav.Link as={Link} to="/">Menu</Nav.Link>
                         {
-                            account ? 
+                            account && account.carts.length ? 
                             <Nav.Link as={Link} to="/cartDetails" className="NavbarCartSection">
                                 <FontAwesomeIcon icon={faShoppingCart}/>
                                 <span className="cartNumber">{account.carts.length}</span>
                             </Nav.Link> :
                             <Nav.Link as={Link} to="/login" className="NavbarCartSection">
                             <FontAwesomeIcon icon={faShoppingCart}/>
-                            <span className="cartNumber">0</span>
                         </Nav.Link>
                         }
                         {
@@ -78,7 +99,7 @@ export default function NavigationBar() {
                                 <>
                                     <Nav.Link as={Link} to="/login"><FontAwesomeIcon icon={faHeart} /></Nav.Link>
                                     <NavDropdown title={account.displayName[0].toUpperCase()} id="basic-nav-dropdown">
-                                        <NavDropdown.Item as={Link} to="/" onClick={logout}>Logout</NavDropdown.Item>
+                                        <NavDropdown.Item as={Link} to="/" onClick={logoutUser}>Logout</NavDropdown.Item>
                                         <NavDropdown.Divider />
                                         <NavDropdown.Item as={Link} to="/">
                                             Settings
