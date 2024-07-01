@@ -28,6 +28,9 @@ export default function CartDetails(){
     const calculateSubTotal = () => {
         return cartData.reduce((acc, item) => acc + parseFloat(item.currentPrice), 0).toFixed(2);
     }
+    const handleItemDelete = (id) => {
+        setCartData(cartData.filter(item => item.id !== id));
+    }
     useEffect(()=> {
         getBuyer()
     }, [])
@@ -36,7 +39,7 @@ export default function CartDetails(){
             <h1 className="cartDetails_Heading">Cart Details</h1>
             {cartData.map((item, index)=>{
                 return (
-                    <CartCard key={index} item={item}/>
+                    <CartCard key={index} item={item} onItemDelete={handleItemDelete}/>
                 )
             })}
             

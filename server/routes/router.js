@@ -135,4 +135,20 @@ router.get("/validUser", authenticate, async(req, res)=> {
   }
 })
 
+//remove item from cart
+router.delete("/removeItem/:id", authenticate, async(req,res) => {
+  try{
+    const {id} = req.params
+    req.rootUser.carts = req.rootUser.carts.filter((currentValue) => {
+      return currentValue.id !== id
+    })
+    req.rootUser.save()
+    res.status(201).json(req.rootUser)
+    console.log("item removed from cart")
+  } catch(error){
+    res.status(400).json(req.rootUser)
+    console.log("remove item from cart error: ", error)
+  }
+})
+
 module.exports = router
