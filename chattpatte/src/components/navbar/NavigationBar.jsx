@@ -1,20 +1,30 @@
 import React, {useState, useEffect, useContext} from "react";
 import './NavigationBar.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart, faShoppingCart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form';
+import ListGroup from 'react-bootstrap/ListGroup';
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios"
 import { LoginContext } from "../context/ContextProvider";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function NavigationBar() {
     const [userData, setUserData] = useState({});
     const {account, setAccount} = useContext(LoginContext)
+    const [text, setText] = useState("")
+    const [listOpen, setListOpen] = useState(true)
+
     // console.log("userData response", userData)
     // console.log("navbar account: ", account)
+    //console.log("search bar text: ", text)
+
+    const {items} = useSelector(state => state.getItemsData);
 
     const history = useNavigate()
     
@@ -66,6 +76,11 @@ export default function NavigationBar() {
         }
     }
 
+    const getText = (items) => {
+        setText(items)
+        setListOpen(false)
+    }
+
     useEffect(()=>{
         getUser()
         getValidUser()
@@ -84,6 +99,33 @@ export default function NavigationBar() {
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link>
                         <Nav.Link as={Link} to="/">Menu</Nav.Link>
+                        <Form className="searchForm">
+                            <div className="searchSection">
+                                <Form.Control
+                                type="search"
+                                placeholder="Search ... 🔍"
+                                className="searchInput"
+                                aria-label="Search"
+                                onChange={(e)=>getText(e.target.value)}
+                                />
+                            </div>
+                            <div className="searchListSection">
+                                {
+                                    text &&
+                                    <ListGroup hidden={listOpen} className="searchListGroup">
+                                        {
+                                            items.filter(item => item.itemName.toLowerCase().includes(text.toLowerCase())).map(items=>(
+                                                <Nav.Link className="searchListNavLink" as={Link} to={`/getItemsByID/${items.id}`} onClick={()=>setListOpen(true)}>
+                                                    <ListGroup.Item>
+                                                        {items.itemName}
+                                                    </ListGroup.Item>
+                                                </Nav.Link>
+                                            ))
+                                        }
+                                    </ListGroup>
+                                }
+                            </div>
+                        </Form>
                         {
                             account && account.carts.length ? 
                             <Nav.Link as={Link} to="/cartDetails" className="NavbarCartSection">

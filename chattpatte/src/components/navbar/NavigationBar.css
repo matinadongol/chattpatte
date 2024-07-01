@@ -7,7 +7,6 @@
     z-index: 1;
     box-shadow: rgba(0, 0, 0, 0.1) -4px 9px 25px -6px;
 }
-
 .navbar .logo {
     font-size: 3rem;
     font-weight: 700;
@@ -17,16 +16,36 @@
     margin: 0 0 0 auto !important;
     align-items: center;
 }
-
 .navbar .nav-link {
     margin-right: 2rem;
     font-size: 2rem;
     color: #707070;
 }
-
 .navbar .nav-link .fa-heart, 
 .navbar .nav-link .fa-shopping-cart {
     font-size: 2rem;
+}
+.searchForm{
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    margin-right: 1rem;
+}
+.searchSection{
+    display: flex;
+}
+.searchInput{
+    font-size: 1.4rem;
+}
+.searchListSection{
+    position: absolute;
+    top: 3rem;
+    width: 20rem;
+    background-color: #eceeec;
+}
+.searchListGroup .searchListNavLink{
+    margin: 0;
+    padding: 0 !important;
 }
 .NavbarCartSection{
     position: relative;
