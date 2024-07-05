@@ -50,6 +50,9 @@ const userSchema = new mongoose.Schema({
       }
     }
   ],
+  verifyToken: {
+    type: String
+  },
   carts: Array
 },{timeStamps:true});
 

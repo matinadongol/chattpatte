@@ -5,6 +5,18 @@ const userdb = require("../model/userSchema")
 const bcrypt = require("bcryptjs");
 const { use } = require("passport");
 const authenticate = require("../middleware/authenticate")
+const nodemailer = require("nodemailer")
+const jwt = require("jsonwebtoken")
+const secretKey = process.env.KEY
+
+//email config
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth:{
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
+  }
+})
 
 //get items data
 router.get("/getItems", async(req,res) => {
@@ -110,6 +122,88 @@ router.get("/logout", authenticate, async(req, res) => {
     console.log("user logout successful")
   } catch(error){
     console.log("error while trying to logout")
+  }
+})
+
+//send link to email for password reset
+router.post("/sendPasswordLink", async(req, res) => {
+  //console.log(req.body)
+  const {email} = req.body
+  if(!email){
+    res.status(401).json({status:401, message:"Enter your email"})
+  }
+  try{
+    const userFind = await userdb.findOne({email: email})
+    const token = jwt.sign({_id:userFind._id}, secretKey, {
+      expiresIn: "120s"
+    })
+    //console.log("sendforgotpasswordLink token: ", token)
+    const setUserToken = await userdb.findByIdAndUpdate({_id:userFind._id}, {verifyToken:token}, {new: true})
+    //console.log("setUserToken: ", setUserToken)
+    if(setUserToken){
+      const mailOptions = {
+        from: process.env.EMAIL_USER,
+        to: email,
+        subject: "Chattpatte: Link to reset your password.",
+        text: `This link is valid for 2 minutes. Click to reset your password: http://localhost:3000/forgotPassword/${userFind.id}/${setUserToken.verifyToken}`
+      }
+      transporter.sendMail(mailOptions, (error, info)=> {
+        if(error){
+          console.log("transporter sendMail error: ", error)
+          res.status(401).json({status: 401, message: "email not sent"})
+        } else {
+          //console.log("transporter email sent: ", info)
+          res.status(201).json({status: 201, message: "email sent successfully."})
+        }
+      })
+    }
+  } catch(error){
+    console.log("send password link error: ", error)
+    res.status(401).json({status: 401, message: "invalid user"})
+  }
+})
+
+//verify user for forgot password link
+router.get("/forgotPassword/:id/:token", async(req, res) => {
+  const {id, token} = req.params
+  try{
+    const validUser = await userdb.findOne({_id:id, verifyToken:token})
+    //console.log("validUser: ", validUser)
+    const verifyToken = jwt.verify(token, secretKey)
+    //console.log("forgotPassword verifyToken: ", verifyToken)
+    if(validUser && verifyToken._id){
+      res.status(201).json({status: 201, validUser})
+    } else {
+      res.status(401).json({status: 401, message: "user doesnot exist"})
+    }
+  } catch(error){
+    console.log("forgotPassword verifyToken error: ", error)
+    res.status(401).json({status: 401, error})
+  }
+})
+
+//change password
+router.post("/:id/:token", async(req, res) => {
+  const {id, token} = req.params
+  const { password } = req.body
+  try{
+    const validUser = await userdb.findOne({_id:id, verifyToken:token})
+    //console.log("validUser: ", validUser)
+
+    const verifyToken = jwt.verify(token, secretKey)
+    //console.log("change Password verifyToken: ", verifyToken)
+
+    if(validUser && verifyToken._id){
+      const newPassword = await bcrypt.hash(password, 12)
+      const setNewUserPassword = await userdb.findByIdAndUpdate({_id:id}, {password:newPassword, retypePassword:newPassword})
+      setNewUserPassword.save()
+      res.status(201).json({status: 201, setNewUserPassword})
+    } else {
+      res.status(401).json({status: 401, message: "user doesnot exist"})
+    }
+  } catch(error){
+    console.log("change Password verifyToken error: ", error)
+    res.status(401).json({status: 401, error})
   }
 })
 

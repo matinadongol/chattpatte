@@ -81,7 +81,9 @@ export default function Login() {
               <label>Remember me</label>
             </div>
             <div className="forgotPasswordSection">
-              <button className="textButton">Forgot Password</button>
+              <Link className="textButton" to="/resetPassword">
+                Forgot Password
+              </Link>
             </div>
           </div>
           <div className="signInButton">
