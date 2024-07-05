@@ -5,15 +5,16 @@ export default function ForgotPassword() {
   const [password, setPassword] = useState("")
   const [retypePassword, setRetypePassword] = useState("")
   const [message, setMessage] = useState(false)
+  const [linkExpired, setLinkExpired] = useState(false)
   const {id, token} = useParams()
-  const history = useNavigate()
+  const navigate = useNavigate()
 
   const setValue=(e)=>{
     if (e.target.name === "password") {
       setPassword(e.target.value);
     }
     if (e.target.name === "retypePassword") {
-      setRetypePassword(e.target.value);
+      setRetypePassword(e.target.value)
     }
   }
   const sendPassword = async(e) => {
@@ -36,7 +37,7 @@ export default function ForgotPassword() {
       setRetypePassword("")
       setMessage(true)
     } else {
-      console.log("invalid email")
+      //console.log("invalid email")
       //alert(data.message)
     }
   }
@@ -49,16 +50,22 @@ export default function ForgotPassword() {
     })
     const data = await res.json()
     if(data.status == 201){
-      console.log("user valid")
+      //console.log("user valid")
     } else {
-      console.log("user invalid")
-      alert("Link expired, please enter your email again.");
-      history("/resetPassword");
+      //console.log("user invalid")
+      setLinkExpired(true)
     }
   }
   useEffect(()=>{
     userValid()
   }, [])
+
+  useEffect(() => {
+    if (linkExpired) {
+      alert("Link expired, please enter your email again.");
+      navigate("/resetPassword");
+    }
+  }, [linkExpired, navigate])
   return (
     <>
       <div className="loginContainer">

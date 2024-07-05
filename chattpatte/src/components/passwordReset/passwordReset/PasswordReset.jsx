@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState } from "react"
 
 export default function PasswordReset() {
   const [email, setEmail] = useState("")
@@ -22,7 +22,7 @@ export default function PasswordReset() {
       setEmail("")
       setMessage(true)
     } else {
-      console.log("invalid email")
+      //console.log("invalid email")
     }
   }
 
@@ -55,5 +55,5 @@ export default function PasswordReset() {
         </form>
       </div>
     </>
-  );
+  )
 }
