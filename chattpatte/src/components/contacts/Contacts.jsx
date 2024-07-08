@@ -1,32 +1,69 @@
-import React, { useEffect } from "react";
+import React, {useState } from "react";
 import './contacts.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faMapMarkerAlt, faPhoneAlt, faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
 export default function Contacts(){
+    const [msg, setMsg] = useState({
+        fullName: "",
+        email: "",
+        message: ""
+    })
+    const addMessage = (e) => {
+        const { name, value } = e.target;
+        setMsg(prevState => ({
+            ...prevState,
+            [name]: value,
+        }))
+    };
+    const sendMsg = async (e) => {
+        e.preventDefault(e);
+        const { fullName, email, message} = msg
+        try {
+            const res = await fetch("sendMessage", {
+                method: "POST",
+                headers: {
+                "Content-Type": "application/json"
+                },
+                body: JSON.stringify({ fullName, email, message })
+            });
+            //console.log('Full response object:', res);
+            const data = await res.json();
+
+            if (res.status === 201) {
+                //console.log("Message sent successfully:", data)
+                alert("Message sent successfully!")
+                setMsg({fullName: "", email: "", message: ""})
+            } else {
+                console.log("Error:", data.error)
+            }
+        } catch (error) {
+        console.error("Error:", error)
+        }
+    }
     return (
-        <>
+        <> 
             <div className="contacts_main">
                 <div className="contactForm">
                     <div className="contactFormInsideDiv">
                         <h1>Get in touch</h1>
                         <p>Feel free to drop us a message.</p>
-                        <form>
+                        <form method="POST">
                             <div className="formField">
                                 <label>Name</label>
-                                <input type="text" placeholder="your full name"/>
+                                <input type="text" placeholder="your full name" required onChange={addMessage} value={msg.fullName} name="fullName" id="fullName"/>
                             </div>
                             <div className="formField">
                                 <label>Email</label>
-                                <input type="email" placeholder="your email address"/>
+                                <input type="email" placeholder="your email address" required onChange={addMessage} value={msg.email} name="email" id="email"/>
                             </div>
                             <div className="formField">
                                 <label>Message</label>
-                                <textarea placeholder="your message"></textarea>
+                                <textarea placeholder="your message" required onChange={addMessage} value={msg.message} name="message" id="message"></textarea>
                             </div>
                         </form>
                         <div className="about_buttonDiv">
-                            <button className="greenbutton">
+                            <button className="greenbutton" type="submit" onClick={sendMsg}>
                                 Send 
                                 <FontAwesomeIcon icon={faArrowRight} />
                             </button>

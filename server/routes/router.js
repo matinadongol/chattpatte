@@ -2,6 +2,7 @@ const express = require("express");
 const router = new express.Router()
 const itemsdb = require("../model/itemsSchema");
 const userdb = require("../model/userSchema")
+const messagesdb = require("../model/messageSchema")
 const bcrypt = require("bcryptjs");
 const { use } = require("passport");
 const authenticate = require("../middleware/authenticate")
@@ -264,6 +265,29 @@ router.delete("/removeItem/:id", authenticate, async(req,res) => {
   } catch(error){
     res.status(400).json(req.rootUser)
     console.log("remove item from cart error: ", error)
+  }
+})
+
+//send Message 
+router.post("/sendMessage", async(req,res) => {
+  // console.log('Received message')
+  // console.log('Request body:', req.body)
+  const {fullName, email, message} = req.body
+  if (!fullName || !email || !message){
+    res.status(422).json({error: "Fill all the data"})
+    console.log("no data available")
+  }
+  try{
+    const newMessage = new messagesdb({
+      fullName, email, message
+    })
+    const storedData = await newMessage.save()
+    //console.log(storedData)
+    res.status(201).json(storedData)
+    
+  } catch(error){
+    console.error("Error sending message:", error);
+    res.status(500).json({ error: "Something went wrong, please try again later" })
   }
 })
 
