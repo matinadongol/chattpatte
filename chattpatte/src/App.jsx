@@ -12,6 +12,7 @@ import Item from "./components/item/Item";
 import SignUp from "./components/signUp/SignUp";
 import ForgotPassword from "./components/passwordReset/forgotPassword/ForgotPassword";
 import PasswordReset from "./components/passwordReset/passwordReset/PasswordReset";
+import Menu from "./components/menu/Menu";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home/>} />
           <Route path="/contacts" element={<Contacts/>} />
           <Route path="/cartDetails" element={<CartDetails/>} />
+          <Route path="/menu" element={<Menu/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/signUp" element={<SignUp/>} />
           <Route path="/getItemsByID/:id" element={<Item/>} />

@@ -98,7 +98,7 @@ export default function NavigationBar() {
                     <Nav>
                         <Nav.Link as={Link} to="/">Home</Nav.Link>
                         <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link>
-                        <Nav.Link as={Link} to="/">Menu</Nav.Link>
+                        <Nav.Link as={Link} to="/menu">Menu</Nav.Link>
                         <Form className="searchForm">
                             <div className="searchSection">
                                 <Form.Control
