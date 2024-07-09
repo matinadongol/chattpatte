@@ -2,6 +2,7 @@
     display: flex;
     padding-top: 10rem;
     flex-direction: column;
+    min-height: 75vh;
 }
 .cartDetails_Heading{
     margin: 0 0 4rem 35rem;
@@ -10,7 +11,7 @@
 }
 .subTotal{
     align-self: flex-end;
-    margin: 0 35rem 0 0 ;
+    margin: 0 30rem 0 0 ;
     font-weight: 400;
     font-size: 2rem;
     margin-bottom: 2rem;
@@ -22,5 +23,38 @@
 .CartDetails_Main .greenbutton{
     width: 20rem;
     align-self: flex-end;
-    margin: 0 35rem 3rem 0 ;
+    margin: 0 30rem 3rem 0 ;
+}
+
+@media (max-width: 1024px) {
+    .subTotal{
+        margin: 0 20rem 1rem 0;
+    }
+    .CartDetails_Main .greenbutton{
+        margin: 0 20rem 3rem 0 ;
+    }
+}
+  
+@media (max-width: 768px) {
+    .subTotal{
+        margin: 0 10rem 1rem 0;
+    }
+    .CartDetails_Main .greenbutton{
+        margin: 0 10rem 3rem 0 ;
+    }
+}
+
+@media (max-width: 425px) {
+    .cartDetails_Heading{
+        margin: 0;
+        padding-left: 2rem;
+    }
+    .subTotal{
+        margin: 2rem 0;
+        align-self: center;
+    }
+    .CartDetails_Main .greenbutton{
+        margin: 0 0 2rem  0 ;
+        align-self: center;
+    }
 }

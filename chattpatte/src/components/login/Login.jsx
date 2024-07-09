@@ -92,7 +92,7 @@ export default function Login() {
             </button>
           </div>
           <div className="signInWithGoogle">
-            <h6>Or sign in with google</h6>
+            <h3>Or sign in with google</h3>
             <button
               type="button"
               className="googleButton"
@@ -102,7 +102,7 @@ export default function Login() {
             </button>
           </div>
           <div className="createAccount">
-            <h6>Dont have an account?</h6>
+            <h3>Dont have an account?</h3>
             <Link className="textButton" to="/signUp">
               Sign Up
             </Link>

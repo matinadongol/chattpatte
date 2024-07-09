@@ -35,19 +35,23 @@ export default function CartCard({ item, onItemDelete }){
             <div className="cartCard_Img">
                 <img src={imagePath} alt="mixed salad"/>
             </div>
-            <div className="cartCard_Description">
-                <h1>{item.itemName}</h1>
-                <p>Added: {item.description}
-                </p>
-            </div>
-            <div className="cartCard_Quantity">
-                <NumberInput/>
-            </div>
-            <div className="cartCard_Price">
-                <h6>${item.currentPrice}</h6>
-            </div>
-            <div className="cartCard_Button">
-                <FontAwesomeIcon icon={faTimes} onClick={deleteItem}/>
+            <div className="cartCard_mobile">
+                <div className="cartCard_Description">
+                    <h1>{item.itemName}</h1>
+                    <p>Added: {item.description}
+                    </p>
+                </div>
+                <div className="cartCard_mobileSub">
+                    <div className="cartCard_Quantity">
+                        <NumberInput/>
+                    </div>
+                    <div className="cartCard_Price">
+                        <h6>${item.currentPrice}</h6>
+                    </div>
+                    <div className="cartCard_Button">
+                        <FontAwesomeIcon icon={faTimes} onClick={deleteItem}/>
+                    </div>
+                </div>
             </div>
         </div>
     );

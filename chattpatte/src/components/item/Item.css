@@ -53,10 +53,29 @@
   letter-spacing: .1rem;
   font-size: 3rem;
 }
+.buttonIcon{
+  margin-left: 2rem;
+}
 .buttonPrice{
   font-size: 3.5rem;
   font-weight: 600;
 }
 .buttonPrice span{
   margin-left: 1rem;
+}
+@media (max-width: 425px) {
+  .itemMain{
+    margin: 0;
+    padding: 10rem 3rem 0 3rem;
+  }
+  .itemDetail{
+    flex-direction: column;
+  }
+  .itemBottom{
+    flex-direction: column;
+  }
+  .addToCartButton .greenbutton{
+    padding: 2rem !important;
+    margin-bottom: 2rem;
+  }
 }

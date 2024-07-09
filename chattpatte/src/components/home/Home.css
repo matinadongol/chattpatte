@@ -24,6 +24,9 @@ h1 {
 h3{
   font-size: 2rem;
 }
+h6{
+  font-size: 3rem;
+}
 p{
   font-size: 2.5rem;
 }
@@ -64,10 +67,41 @@ p{
     letter-spacing: .2rem;
 }
 .home_rightSection p{
-    font-size: 2.5rem;
     margin-bottom: 5rem;
 }
 .buttonDiv{
     display: flex;
     gap: 3rem;
+}
+
+@media (max-width: 1024px) {
+  html {
+    font-size: 50%;
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 45%;
+  }
+  .home_img{
+    height: 60rem;
+  }
+}
+
+@media (max-width: 425px) {
+  .home_main{
+    flex-direction: column-reverse;
+  }
+  .home_rightSection{
+  width: 100%;
+  margin-top: 5rem !important;
+  padding: 0 5rem;
+  }
+  .home_leftSection{
+  width: 100%;
+  }
+  .buttonDiv{
+    justify-content: space-between;
+  }
 }

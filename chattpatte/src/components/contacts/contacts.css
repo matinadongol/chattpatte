@@ -70,3 +70,33 @@
     width: 100%;
     height: 40rem;
 }
+
+@media (max-width: 1024px) {
+    .contactDetails{
+        left: 10rem;
+    }
+}
+  
+@media (max-width: 768px) {
+    .contactDetails{
+        left: 0rem;
+    }
+}
+@media (max-width: 425px) {
+    .contacts_main{
+        flex-direction: column;
+        gap: 3rem;
+        margin: 0 3rem;
+    }
+    .contactForm{
+        width: 100%;
+    }
+    .contactFormInsideDiv{
+        width: 100%;
+    }
+    .contactDetails{
+        position: initial;
+        height: auto;
+        margin-bottom: 3rem;
+    }
+}

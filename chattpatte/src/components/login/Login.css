@@ -97,3 +97,11 @@
   margin: 0 !important;
 }
 
+@media (max-width: 425px) {
+  .formGroup input {
+    padding: 1.75rem;
+  }
+  .rememberMeForgetPassword{
+    margin-bottom: 2rem;
+  }
+}

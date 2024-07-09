@@ -20,3 +20,9 @@
 .slick-prev:before, .slick-next:before{
     color:  #50754C !important;
 }
+
+@media (max-width: 425px) {
+    .slick-slider{
+        width: 70%;
+    }
+}

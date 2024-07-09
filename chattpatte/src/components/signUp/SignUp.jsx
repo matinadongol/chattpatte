@@ -88,7 +88,7 @@ export default function SignUp() {
             </button>
           </div>
           <div className="alreadyCreatedAccount">
-            <h6>Already have an account?</h6>
+            <h3>Already have an account?</h3>
             <Link className="textButton" to="/login">
               Log in
             </Link>

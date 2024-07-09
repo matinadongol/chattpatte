@@ -4,7 +4,7 @@
     flex-direction: column;
     position: relative;
     width: 40rem;
-    height: 50rem;
+    height: 55rem;
     background-color: #50754C;
     border-radius: 1rem;
 }
@@ -24,17 +24,15 @@
     border-top-left-radius: 10rem;
     border-top-right-radius: 10rem;
     width: 100%;
-    height: 35rem;
+    height: 45rem;
     padding: 15rem 3rem 1rem 3rem; 
     text-align: center;
     margin-top: 15rem;
 }
 .menuCardDescription h6{
-    font-size: 3rem;
     margin-bottom: 1rem;
 }
 .menuCardDescription p{
-    font-size: 2rem;
     margin-bottom: 4rem;
 }
 .menuCardBottom {

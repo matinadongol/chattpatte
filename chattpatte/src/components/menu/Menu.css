@@ -12,3 +12,8 @@
   padding: 0rem 20rem 5rem 20rem;
   flex-wrap: wrap;
 }
+@media (max-width: 425px) {
+  .menuContainer{
+      padding: 0;
+  }
+}

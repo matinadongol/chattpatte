@@ -54,3 +54,45 @@
     font-size: 1.8rem;
     color: #707070;
 }
+
+@media (max-width: 1024px) {
+    .reserveTable_imageTop{
+        width: 40rem;
+        height: 30rem;
+    }
+    .reserveTable_imageBottom{
+        width: 40rem;
+        height: 30rem;
+    }
+}
+  
+@media (max-width: 768px) {
+    .reserveTable_imageTop{
+        width: 35rem;
+        height: 25rem;
+    }
+    .reserveTable_imageBottom{
+        width: 35rem;
+        height: 25rem;
+    }
+}
+@media (max-width: 425px) {
+    .reserveTable_Box{
+        width: 80%;
+    }
+    .reserveTable_Form{
+        flex-direction: column;
+        width: 100%;
+    }
+    .reserveTable_FormSection input{
+        width: 100%;
+    }
+    .reserveTable_imageTop{
+        width: 30rem;
+        height: 20rem;
+    }
+    .reserveTable_imageBottom{
+        width: 30rem;
+        height: 20rem;
+    }
+}
